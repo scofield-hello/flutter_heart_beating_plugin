@@ -45,7 +45,7 @@ class HeartBeatingTask(
                     throw Exception("心跳包发送失败, 响应码: $code")
                 }
             } else {
-                throw Exception("心跳包请求发送失败, http status: ${response.code}")
+                throw Exception("心跳包请求发送失败, http status: ${response.code}, body:${response.body}")
             }
         } catch (e: Exception) {
             Log.e(TAG, "心跳包发送失败", e)
