@@ -35,7 +35,7 @@ class HeartBeatingTask(
                 .post(requestBody)
                 .build()
             val response = httpClient.newCall(request).execute()
-            if (response.code == 200) {
+            if (response.code == 200 || response.code == 0) {
                 val json = JSONObject(response.body!!.string())
                 Log.d(TAG, "响应：${json.toString(4)}")
                 val code = json.getInt("code")
@@ -45,7 +45,7 @@ class HeartBeatingTask(
                     throw Exception("心跳包发送失败, 响应码: $code")
                 }
             } else {
-                throw Exception("心跳包请求发送失败, http status: ${response.code}, body:${response.body}")
+                throw Exception("心跳包请求发送失败, http status: ${response.code}")
             }
         } catch (e: Exception) {
             Log.e(TAG, "心跳包发送失败", e)
