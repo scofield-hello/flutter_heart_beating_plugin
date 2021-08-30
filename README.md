@@ -5,7 +5,7 @@ A new flutter plugin project.
 ## Getting Started
 
 ```yaml
-tracker:
+flutter_heart_beating:
     git: git://github.com/scofield-hello/flutter_tracker_plugin.git
 ```
 
