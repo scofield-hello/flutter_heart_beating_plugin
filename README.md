@@ -6,7 +6,7 @@ A new flutter plugin project.
 
 ```yaml
 flutter_heart_beating:
-    git: git://github.com/scofield-hello/flutter_tracker_plugin.git
+    git: git://github.com/scofield-hello/flutter_heart_beating_plugin.git
 ```
 
 ```dart
