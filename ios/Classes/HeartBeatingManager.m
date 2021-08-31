@@ -64,14 +64,15 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30;
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", nil];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json; charset=utf-8", nil];
     long timestamp = [[NSNumber numberWithDouble:[NSDate date].timeIntervalSince1970] longValue] * 1000 ;
     [body setValue:[NSNumber numberWithLong:timestamp] forKey:@"timestamp"];
     [manager POST:postUrl parameters:body headers:headers progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *data = responseObject;
         if ([[data allKeys] containsObject:@"code"]) {
-            if (((NSNumber*)[data objectForKey:@"code"]).intValue == 200) {
+            NSNumber* code = ((NSNumber*)[data objectForKey:@"code"]).intValue;
+            if (code == 200 || code == 0) {
                 NSLog(@"心跳包响应成功:%@", data);
             }else{
                 NSLog(@"心跳包响应失败:%@", data);
