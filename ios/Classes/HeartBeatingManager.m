@@ -71,7 +71,7 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *data = responseObject;
         if ([[data allKeys] containsObject:@"code"]) {
-            NSNumber* code = ((NSNumber*)[data objectForKey:@"code"]).intValue;
+            int code = ((NSNumber*)[data objectForKey:@"code"]).intValue;
             if (code == 200 || code == 0) {
                 NSLog(@"心跳包响应成功:%@", data);
             }else{
