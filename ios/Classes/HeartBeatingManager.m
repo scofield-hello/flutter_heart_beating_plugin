@@ -31,7 +31,7 @@
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0));
     // 2. 设置定时器启动时间、间隔
     dispatch_source_set_timer(_timer, DISPATCH_TIME_NOW,
-                              30 * NSEC_PER_SEC,  0 * NSEC_PER_SEC);
+                              interval * NSEC_PER_SEC,  0 * NSEC_PER_SEC);
     // 3. 设置callback
     dispatch_source_set_event_handler(_timer, ^{
             NSLog(@"心跳服务已启动");
@@ -64,7 +64,7 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30;
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json; charset=utf-8", nil];
+    [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     long timestamp = [[NSNumber numberWithDouble:[NSDate date].timeIntervalSince1970] longValue] * 1000 ;
     [body setValue:[NSNumber numberWithLong:timestamp] forKey:@"timestamp"];
     [manager POST:postUrl parameters:body headers:headers progress:^(NSProgress * _Nonnull uploadProgress) {
