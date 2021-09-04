@@ -23,6 +23,10 @@
 
 -(void) start:(NSString*)postUrl headers:(NSMutableDictionary*)headers
      body:(NSMutableDictionary*)body withInterval:(int)interval{
+    NSLog(@"heartbeat postUrl=%@", postUrl);
+    NSLog(@"heartbeat headers=%@", headers);
+    NSLog(@"heartbeat body=%@", body);
+    NSLog(@"heartbeat interval=%d", interval);
     __weak HeartBeatingManager* weakManager = self;
     if (_timer) {
         dispatch_source_cancel(_timer);
