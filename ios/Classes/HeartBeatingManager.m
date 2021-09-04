@@ -69,6 +69,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30;
     [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Accept"];
     long timestamp = [[NSNumber numberWithDouble:[NSDate date].timeIntervalSince1970] longValue] * 1000 ;
     [body setValue:[NSNumber numberWithLong:timestamp] forKey:@"timestamp"];
     [manager POST:postUrl parameters:body headers:headers progress:^(NSProgress * _Nonnull uploadProgress) {
